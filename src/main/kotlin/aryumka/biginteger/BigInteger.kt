@@ -190,14 +190,14 @@ class BigInteger(value: String) {
 
   override fun equals(other: Any?): Boolean =
     when (other) {
-      is BigInteger -> this.integer == other.integer
-      is String -> this.integer == other
-      is Int -> this.integer == other.toString()
-      is Long -> this.integer == other.toString()
+      is BigInteger -> this.toString() == other.toString()
+      is String -> this.toString() == other
+      is Int -> this.toString() == other.toString()
+      is Long -> this.toString() == other.toString()
       else -> false
     }
 
-  override fun toString(): String = this.integer
+  override fun toString(): String = if (this.sign == Sign.POSITIVE) this.integer else "-${this.integer}"
 
   enum class Sign {
     POSITIVE, NEGATIVE
