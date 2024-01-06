@@ -58,4 +58,108 @@ class BigIntegerTests: FunSpec({
       bigInteger1 + bigInteger2 shouldBe "30000000000"
     }
   }
+
+  context("minus operator") {
+    test("BigInteger(3) - BigInteger(2) == BigInteger(1)") {
+      val bigInteger1 = BigInteger.of(3)
+      val bigInteger2 = BigInteger.of(2)
+      val bigInteger3 = BigInteger.of(1)
+
+      bigInteger1 - bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(3) - BigInteger(2L) == BigInteger(1)") {
+      val bigInteger1 = BigInteger.of(3)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(1)
+
+      bigInteger1 - bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(3L) - BigInteger(2L) == BigInteger(1)") {
+      val bigInteger1 = BigInteger.of(3L)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(1)
+
+      bigInteger1 - bigInteger2 shouldBe bigInteger3
+    }
+  }
+
+  context("times operator") {
+    test("BigInteger(3) * BigInteger(2) == BigInteger(6)") {
+      val bigInteger1 = BigInteger.of(3)
+      val bigInteger2 = BigInteger.of(2)
+      val bigInteger3 = BigInteger.of(6)
+
+      bigInteger1 * bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(3) * BigInteger(2L) == BigInteger(6)") {
+      val bigInteger1 = BigInteger.of(3)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(6)
+
+      bigInteger1 * bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(3L) * BigInteger(2L) == BigInteger(6)") {
+      val bigInteger1 = BigInteger.of(3L)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(6)
+
+      bigInteger1 * bigInteger2 shouldBe bigInteger3
+    }
+  }
+
+  context("div operator") {
+    test("BigInteger(6) / BigInteger(2) == BigInteger(3)") {
+      val bigInteger1 = BigInteger.of(6)
+      val bigInteger2 = BigInteger.of(2)
+      val bigInteger3 = BigInteger.of(3)
+
+      bigInteger1 / bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(6) / BigInteger(2L) == BigInteger(3)") {
+      val bigInteger1 = BigInteger.of(6)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(3)
+
+      bigInteger1 / bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(6L) / BigInteger(2L) == BigInteger(3)") {
+      val bigInteger1 = BigInteger.of(6L)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(3)
+
+      bigInteger1 / bigInteger2 shouldBe bigInteger3
+    }
+  }
+
+  context("mod operator") {
+    test("BigInteger(6) % BigInteger(2) == BigInteger(0)") {
+      val bigInteger1 = BigInteger.of(6)
+      val bigInteger2 = BigInteger.of(2)
+      val bigInteger3 = BigInteger.of(0)
+
+      bigInteger1 % bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(6) % BigInteger(4L) == BigInteger(2)") {
+      val bigInteger1 = BigInteger.of(6)
+      val bigInteger2 = BigInteger.of(4L)
+      val bigInteger3 = BigInteger.of(2)
+
+      bigInteger1 % bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(6L) % BigInteger(2L) == BigInteger(0)") {
+      val bigInteger1 = BigInteger.of(6L)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(0)
+
+      bigInteger1 % bigInteger2 shouldBe bigInteger3
+    }
+  }
 })

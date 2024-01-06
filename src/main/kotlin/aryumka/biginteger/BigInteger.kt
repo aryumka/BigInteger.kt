@@ -57,11 +57,17 @@ class BigInteger(
   operator fun minus(other: Long): BigInteger =
     TODO()
 
+  operator fun minus(other: BigInteger): BigInteger =
+    TODO()
+
   // Times
   operator fun times(other: Int): BigInteger =
     TODO()
 
   operator fun times(other: Long): BigInteger =
+    TODO()
+
+  operator fun times(other: BigInteger): BigInteger =
     TODO()
 
   // Div
@@ -71,11 +77,17 @@ class BigInteger(
   operator fun div(other: Long): BigInteger =
     TODO()
 
+  operator fun div(other: BigInteger): BigInteger =
+    TODO()
+
   // Rem
   operator fun rem(other: Int): BigInteger =
     TODO()
 
   operator fun rem(other: Long): BigInteger =
+    TODO()
+
+  operator fun rem(other: BigInteger): BigInteger =
     TODO()
 
   override fun equals(other: Any?): Boolean =
