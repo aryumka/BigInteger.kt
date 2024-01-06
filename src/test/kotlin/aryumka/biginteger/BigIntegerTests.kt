@@ -76,6 +76,14 @@ class BigIntegerTests: FunSpec({
       bigInteger1 - bigInteger2 shouldBe bigInteger3
     }
 
+    test("BigInteger(15) - BigInteger(9) == BigInteger(6)") {
+      val bigInteger1 = BigInteger.of(15)
+      val bigInteger2 = BigInteger.of(9)
+      val bigInteger3 = BigInteger.of(6)
+
+      bigInteger1 - bigInteger2 shouldBe bigInteger3
+    }
+
     test("BigInteger(3L) - BigInteger(2L) == BigInteger(1)") {
       val bigInteger1 = BigInteger.of(3L)
       val bigInteger2 = BigInteger.of(2L)
