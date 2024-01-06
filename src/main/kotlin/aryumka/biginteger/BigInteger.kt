@@ -18,6 +18,7 @@ class BigInteger(
     }
   }
 
+  // Plus
   private fun plus(other: String): BigInteger {
     var result = ""
     var carry = 0
@@ -48,6 +49,34 @@ class BigInteger(
 
   operator fun plus(other: BigInteger): BigInteger =
     this.plus(other.value)
+
+  // Minus
+  operator fun minus(other: Int): BigInteger =
+    TODO()
+
+  operator fun minus(other: Long): BigInteger =
+    TODO()
+
+  // Times
+  operator fun times(other: Int): BigInteger =
+    TODO()
+
+  operator fun times(other: Long): BigInteger =
+    TODO()
+
+  // Div
+  operator fun div(other: Int): BigInteger =
+    TODO()
+
+  operator fun div(other: Long): BigInteger =
+    TODO()
+
+  // Rem
+  operator fun rem(other: Int): BigInteger =
+    TODO()
+
+  operator fun rem(other: Long): BigInteger =
+    TODO()
 
   override fun equals(other: Any?): Boolean =
     when (other) {
