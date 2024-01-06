@@ -17,4 +17,6 @@ class BigInteger(
       return BigInteger(value.toString())
     }
   }
+
+  override fun toString(): String = this.value
 }
