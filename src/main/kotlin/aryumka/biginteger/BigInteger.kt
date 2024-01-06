@@ -8,6 +8,22 @@ class BigInteger(
   // Factory methods
   companion object {
     fun of(value: String): BigInteger {
+      if (value.isEmpty()) {
+        throw IllegalArgumentException("value must not be empty")
+      }
+      if (value.startsWith("-") || value.startsWith("+")) {
+        if (value.length == 1) {
+          throw IllegalArgumentException("value must not be empty")
+        }
+        if (value.substring(1).matches(Regex("[0-9]+"))) {
+          return BigInteger(value.substring(1))
+        } else {
+          throw IllegalArgumentException("value must be a number")
+        }
+      } else if (!value.matches(Regex("[0-9]+"))) {
+        throw IllegalArgumentException("value must be a number")
+      }
+
       return BigInteger(value)
     }
 
