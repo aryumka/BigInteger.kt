@@ -3,6 +3,8 @@ package aryumka.biginteger
 class BigInteger(
   private val value: String
 ) {
+  private val sign: Sign = if (value.startsWith("-")) Sign.NEGATIVE else Sign.POSITIVE
+
   // Factory methods
   companion object {
     fun of(value: String): BigInteger {
@@ -69,20 +71,25 @@ class BigInteger(
     //find out which is bigger
     var minuend = ""
     var subtrahend = ""
+    var sign = ""
     if (this.value.length > other.length) {
       minuend = this.value
       subtrahend = other
+      sign = ""
     } else if (this.value.length < other.length) {
       minuend = other
       subtrahend = this.value
+      sign = "-"
     } else {
       //same length
       if (this.value > other) {
         minuend = this.value
         subtrahend = other
+        sign = ""
       } else {
         minuend = other
         subtrahend = this.value
+        sign = "-"
       }
     }
 
@@ -110,6 +117,7 @@ class BigInteger(
       otherLength--
     }
 
+    //todo : refactor this with negative method
     return BigInteger(result.reversed())
   }
 
@@ -175,4 +183,8 @@ class BigInteger(
     }
 
   override fun toString(): String = this.value
+
+  enum class Sign {
+    POSITIVE, NEGATIVE
+  }
 }
