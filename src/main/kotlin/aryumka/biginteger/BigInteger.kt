@@ -1,4 +1,6 @@
 package aryumka.biginteger
 
-class BigInteger {
+class BigInteger(
+
+) {
 }
