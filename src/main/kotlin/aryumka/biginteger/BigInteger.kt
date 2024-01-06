@@ -18,6 +18,10 @@ class BigInteger(
     }
   }
 
+  operator fun plus(other: BigInteger): BigInteger {
+    TODO()
+  }
+
   override fun equals(other: Any?): Boolean =
     when (other) {
       is BigInteger -> this.value == other.value
