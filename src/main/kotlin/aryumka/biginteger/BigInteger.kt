@@ -18,5 +18,14 @@ class BigInteger(
     }
   }
 
+  override fun equals(other: Any?): Boolean =
+    when (other) {
+      is BigInteger -> this.value == other.value
+      is String -> this.value == other
+      is Int -> this.value == other.toString()
+      is Long -> this.value == other.toString()
+      else -> false
+    }
+
   override fun toString(): String = this.value
 }
