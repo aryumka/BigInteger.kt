@@ -1,26 +1,29 @@
 package aryumka.biginteger
 
-class BigInteger(
-  private val value: String
-) {
-  private val sign: Sign = if (value.startsWith("-")) Sign.NEGATIVE else Sign.POSITIVE
+class BigInteger(value: String) {
+  val integer: String
+  val sign: Sign
+
+  init {
+    if (value.isEmpty()) {
+      throw IllegalArgumentException("value must not be empty")
+    }
+    if (!value.matches(Regex("[-|+]?[0-9]+"))) {
+      throw IllegalArgumentException("value must be a number")
+    }
+    if (value.startsWith("-") || value.startsWith("+")) {
+      this.integer = value.substring(1)
+      this.sign = if (value.startsWith("-")) Sign.NEGATIVE else Sign.POSITIVE
+    } else {
+      this.integer = value
+      this.sign = Sign.POSITIVE
+    }
+  }
 
   // Factory methods
   companion object {
     fun of(value: String): BigInteger {
-      if (value.isEmpty()) {
-        throw IllegalArgumentException("value must not be empty")
-      }
-
-      if (!value.matches(Regex("[-|+]?[0-9]+"))) {
-        throw IllegalArgumentException("value must be a number")
-      }
-
-      return if (value.startsWith("-") || value.startsWith("+")) {
-        BigInteger(value.substring(1))
-      } else {
-        BigInteger(value)
-      }
+      return BigInteger(value)
     }
 
     fun of(value: Int): BigInteger {
@@ -36,11 +39,11 @@ class BigInteger(
   private fun plus(other: String): BigInteger {
     var result = ""
     var carry = 0
-    var valueLength = this.value.length - 1
+    var valueLength = this.integer.length - 1
     var otherLength = other.length - 1
 
     while (valueLength >= 0 || otherLength >= 0 || carry > 0) {
-      val valueDigit = if (valueLength >= 0) this.value[valueLength] - '0' else 0
+      val valueDigit = if (valueLength >= 0) this.integer[valueLength] - '0' else 0
       val otherDigit = if (otherLength >= 0) other[otherLength] - '0' else 0
 
       val sum = valueDigit + otherDigit + carry
@@ -62,7 +65,7 @@ class BigInteger(
     this.plus(other.toString())
 
   operator fun plus(other: BigInteger): BigInteger =
-    this.plus(other.value)
+    this.plus(other.integer)
 
 
 
@@ -74,7 +77,7 @@ class BigInteger(
     this.minus(other.toString())
 
   operator fun minus(other: BigInteger): BigInteger =
-    this.minus(other.value)
+    this.minus(other.integer)
 
   private fun minus(other: String): BigInteger {
     var result = ""
@@ -84,23 +87,23 @@ class BigInteger(
     var minuend = ""
     var subtrahend = ""
     var sign = ""
-    if (this.value.length > other.length) {
-      minuend = this.value
+    if (this.integer.length > other.length) {
+      minuend = this.integer
       subtrahend = other
       sign = ""
-    } else if (this.value.length < other.length) {
+    } else if (this.integer.length < other.length) {
       minuend = other
-      subtrahend = this.value
+      subtrahend = this.integer
       sign = "-"
     } else {
       //same length
-      if (this.value > other) {
-        minuend = this.value
+      if (this.integer > other) {
+        minuend = this.integer
         subtrahend = other
         sign = ""
       } else {
         minuend = other
-        subtrahend = this.value
+        subtrahend = this.integer
         sign = "-"
       }
     }
@@ -108,7 +111,7 @@ class BigInteger(
     var valueLength = minuend.length - 1
     var otherLength = subtrahend.length - 1
     while (valueLength >= 0 || otherLength >= 0 || carry > 0) {
-      var valueDigit = if (valueLength >= 0) this.value[valueLength] - '0' else 0
+      var valueDigit = if (valueLength >= 0) this.integer[valueLength] - '0' else 0
       val otherDigit = if (otherLength >= 0) other[otherLength] - '0' else 0
 
       if (valueDigit < otherDigit) {
@@ -141,16 +144,16 @@ class BigInteger(
     this.times(other.toString())
 
   operator fun times(other: BigInteger): BigInteger =
-    this.times(other.value)
+    this.times(other.integer)
 
   private fun times(other: String): BigInteger {
     var result = ""
     var carry = 0
-    var valueLength = this.value.length - 1
+    var valueLength = this.integer.length - 1
     var otherLength = other.length - 1
 
     while (valueLength >= 0 || otherLength >= 0 || carry > 0) {
-      val valueDigit = if (valueLength >= 0) this.value[valueLength] - '0' else 0
+      val valueDigit = if (valueLength >= 0) this.integer[valueLength] - '0' else 0
       val otherDigit = if (otherLength >= 0) other[otherLength] - '0' else 0
 
       val sum = valueDigit * otherDigit + carry
@@ -187,14 +190,14 @@ class BigInteger(
 
   override fun equals(other: Any?): Boolean =
     when (other) {
-      is BigInteger -> this.value == other.value
-      is String -> this.value == other
-      is Int -> this.value == other.toString()
-      is Long -> this.value == other.toString()
+      is BigInteger -> this.integer == other.integer
+      is String -> this.integer == other
+      is Int -> this.integer == other.toString()
+      is Long -> this.integer == other.toString()
       else -> false
     }
 
-  override fun toString(): String = this.value
+  override fun toString(): String = this.integer
 
   enum class Sign {
     POSITIVE, NEGATIVE

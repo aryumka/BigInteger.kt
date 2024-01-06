@@ -1,5 +1,6 @@
 package aryumka.biginteger
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
@@ -23,6 +24,43 @@ class BigIntegerTests: FunSpec({
       val bigInteger2 = BigInteger.of(1L)
 
       bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger.of(1) == BigInteger.of(\"+1\")") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of("+1")
+
+      bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger.of(1) == BigInteger.of(\"-1\")") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of("-1")
+
+      bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger.of(\"foo\") throws IllegalArgumentException") {
+      val exception = shouldThrow<IllegalArgumentException> {
+        BigInteger.of("foo")
+      }
+
+      exception.message shouldBe "value must be a number"
+    }
+
+    test("BigInteger.of(\"\") throws IllegalArgumentException") {
+      val exception = shouldThrow<IllegalArgumentException> {
+        BigInteger.of("")
+      }
+
+      exception.message shouldBe "value must not be empty"
+    }
+
+    test("BigInteger.of(0)") {
+      val bigInteger = BigInteger.of(0)
+
+      bigInteger.toString() shouldBe "0"
+      bigInteger.sign shouldBe BigInteger.Sign.POSITIVE
     }
   }
 
