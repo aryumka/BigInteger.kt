@@ -35,6 +35,22 @@ class BigIntegerTests: FunSpec({
       bigInteger1 + bigInteger2 shouldBe bigInteger3
     }
 
+    test("BigInteger(1L) + BigInteger(2L) == BigInteger(3)") {
+      val bigInteger1 = BigInteger.of(1L)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(3)
+
+      bigInteger1 + bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(1) + BigInteger(2L) == BigInteger(3)") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of(2L)
+      val bigInteger3 = BigInteger.of(3)
+
+      bigInteger1 + bigInteger2 shouldBe bigInteger3
+    }
+
     test("Integer overflow") {
       val bigInteger1 = BigInteger.of(10_000_000_000)
       val bigInteger2 = BigInteger.of(20_000_000_000)
