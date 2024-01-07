@@ -144,7 +144,7 @@ class BigInteger(value: String) {
     this.times(other.toString())
 
   operator fun times(other: BigInteger): BigInteger =
-    this.times(other.integer)
+    this.times(other.toString())
 
   private fun times(other: String): BigInteger {
     var result = ""
@@ -167,7 +167,6 @@ class BigInteger(value: String) {
 
     return BigInteger(result.reversed())
   }
-
   // Div
   operator fun div(other: Int): BigInteger =
     TODO()
@@ -186,6 +185,17 @@ class BigInteger(value: String) {
     TODO()
 
   operator fun rem(other: BigInteger): BigInteger =
+    TODO()
+
+  // Unary
+  operator fun unaryPlus(): BigInteger =
+    TODO()
+
+  operator fun unaryMinus(): BigInteger =
+    TODO()
+
+  // Not
+  operator fun not(): BigInteger =
     TODO()
 
   override fun equals(other: Any?): Boolean =

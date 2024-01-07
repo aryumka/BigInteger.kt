@@ -9,6 +9,9 @@
 - [ ] Power
 - [ ] Positive
 - [ ] Negative
+- [ ] Unary
+- [ ] Augmented assignment
+- [ ] Compare
 
 ## Usage
 ```kotlin
