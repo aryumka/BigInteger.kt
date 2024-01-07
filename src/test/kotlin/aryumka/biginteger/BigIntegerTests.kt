@@ -3,6 +3,7 @@ package aryumka.biginteger
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class BigIntegerTests: FunSpec({
   context("of Factory") {
@@ -61,6 +62,45 @@ class BigIntegerTests: FunSpec({
 
       bigInteger.toString() shouldBe "0"
       bigInteger.sign shouldBe BigInteger.Sign.POSITIVE
+    }
+  }
+
+  context("equals") {
+    test("BigInteger(1) == BigInteger(1)") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of(1)
+
+      bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger(1) == BigInteger(1L)") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of(1L)
+
+      bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger(1) == BigInteger(\"1\")") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of("1")
+
+      bigInteger1 shouldBe bigInteger2
+    }
+  }
+
+  context("compareTo") {
+    test("BigInteger(1) < BigInteger(2)") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of(2)
+
+      bigInteger1 < bigInteger2 shouldBe true
+    }
+
+    test("BigInteger(1) > BigInteger(-2)") {
+      val bigInteger1 = BigInteger.of(1)
+      val bigInteger2 = BigInteger.of(-2)
+
+      bigInteger1 > bigInteger2 shouldBe true
     }
   }
 
