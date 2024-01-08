@@ -87,6 +87,19 @@ class BigInteger(value: String) {
     var minuend = ""
     var subtrahend = ""
     var sign = ""
+
+    if (this < BigInteger(other)) {
+      minuend = other
+      subtrahend = this.integer
+      sign = "-"
+    } else if (this > BigInteger(other)) {
+      minuend = this.integer
+      subtrahend = other
+      sign = ""
+    } else {
+      return BigInteger("0")
+    }
+
     if (this.integer.length > other.length) {
       minuend = this.integer
       subtrahend = other
@@ -108,32 +121,32 @@ class BigInteger(value: String) {
       }
     }
 
-    var valueLength = minuend.length - 1
-    var otherLength = subtrahend.length - 1
-    while (valueLength >= 0 || otherLength >= 0 || carry > 0) {
-      var valueDigit = if (valueLength >= 0) this.integer[valueLength] - '0' else 0
-      val otherDigit = if (otherLength >= 0) other[otherLength] - '0' else 0
+    var thisIdx = minuend.length - 1
+    var otherIdx = subtrahend.length - 1
+    while (thisIdx >= 0 || thisIdx >= 0 || carry > 0) {
+      var thisDigit = if (thisIdx >= 0) this.integer[thisIdx] - '0' else 0
+      val otherDigit = if (otherIdx >= 0) other[thisIdx] - '0' else 0
 
-      if (valueDigit < otherDigit) {
-        valueDigit += 10
+      if (thisDigit < otherDigit) {
+        thisDigit += 10
       }
 
-      val diff = valueDigit - otherDigit - carry
+      val diff = thisDigit - otherDigit - carry
 
-      if (valueDigit >= 10) {
-        carry = 1
+      carry = if (thisDigit >= 10) {
+        1
       } else {
-        carry = 0
+        0
       }
 
       result += if (diff % 10 > 0) diff % 10 else ""
 
-      valueLength--
-      otherLength--
+      thisIdx--
+      otherIdx--
     }
 
     //todo : refactor this with negative method
-    return BigInteger(result.reversed())
+    return BigInteger(sign + result.reversed())
   }
 
   // Times
@@ -205,6 +218,23 @@ class BigInteger(value: String) {
       is Int -> this.toString() == other.toString()
       is Long -> this.toString() == other.toString()
       else -> false
+    }
+
+  operator fun compareTo(other: BigInteger): Int =
+    when {
+      this.sign == Sign.POSITIVE && other.sign == Sign.NEGATIVE -> 1
+      this.sign == Sign.NEGATIVE && other.sign == Sign.POSITIVE -> -1
+      this.sign == Sign.POSITIVE && other.sign == Sign.POSITIVE -> {
+        if (this.integer.length > other.integer.length) 1
+        else if (this.integer.length < other.integer.length) -1
+        else this.integer.compareTo(other.integer)
+      }
+      this.sign == Sign.NEGATIVE && other.sign == Sign.NEGATIVE -> {
+        if (this.integer.length > other.integer.length) -1
+        else if (this.integer.length < other.integer.length) 1
+        else this.integer.compareTo(other.integer)
+      }
+      else -> 0
     }
 
   override fun toString(): String = if (this.sign == Sign.POSITIVE) this.integer else "-${this.integer}"
