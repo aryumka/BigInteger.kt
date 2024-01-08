@@ -93,14 +93,14 @@ class BigIntegerTests: FunSpec({
       val bigInteger1 = BigInteger.of(1)
       val bigInteger2 = BigInteger.of(2)
 
-      bigInteger1 < bigInteger2 shouldBe true
+      (bigInteger1 < bigInteger2) shouldBe true
     }
 
     test("BigInteger(1) > BigInteger(-2)") {
       val bigInteger1 = BigInteger.of(1)
       val bigInteger2 = BigInteger.of(-2)
 
-      bigInteger1 > bigInteger2 shouldBe true
+      (bigInteger1 > bigInteger2) shouldBe true
     }
   }
 
