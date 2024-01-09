@@ -121,11 +121,11 @@ class BigInteger(value: String) {
       }
     }
 
-    var thisIdx = minuend.length - 1
-    var otherIdx = subtrahend.length - 1
-    while (thisIdx >= 0 || thisIdx >= 0 || carry > 0) {
-      var thisDigit = if (thisIdx >= 0) this.integer[thisIdx] - '0' else 0
-      val otherDigit = if (otherIdx >= 0) other[thisIdx] - '0' else 0
+    var thisLength = minuend.length - 1
+    var otherLength = subtrahend.length - 1
+    while (thisLength >= 0 || thisLength >= 0 || carry > 0) {
+      var thisDigit = if (thisLength >= 0) this.integer[thisLength] - '0' else 0
+      val otherDigit = if (otherLength >= 0) other[thisLength] - '0' else 0
 
       if (thisDigit < otherDigit) {
         thisDigit += 10
@@ -141,11 +141,10 @@ class BigInteger(value: String) {
 
       result += if (diff % 10 > 0) diff % 10 else ""
 
-      thisIdx--
-      otherIdx--
+      thisLength--
+      otherLength--
     }
 
-    //todo : refactor this with negative method
     return BigInteger(sign + result.reversed())
   }
 
@@ -182,18 +181,37 @@ class BigInteger(value: String) {
   }
   // Div
   operator fun div(other: Int): BigInteger =
-    TODO()
+    this.div(other.toString())
 
   operator fun div(other: Long): BigInteger =
-    TODO()
+    this.div(other.toString())
 
   operator fun div(other: BigInteger): BigInteger =
-    TODO()
+    this.div(other.toString())
+
+  private fun div(other: String): BigInteger {
+    var result = ""
+    var sign = if (this.sign == BigInteger(other).sign) "" else "-"
+    var remainder = BigInteger(this.integer)
+    val divisor = BigInteger(other)
+
+    if (other == "0") {
+      throw ArithmeticException("Division by zero")
+    }
+
+    var count = 0
+    while (remainder >= divisor * of(count + 1)) {
+      count++
+    }
+    remainder -= divisor * of(count)
+    result += count
+
+    return BigInteger(sign + result)
+  }
 
   // Rem
   operator fun rem(other: Int): BigInteger =
     TODO()
-
   operator fun rem(other: Long): BigInteger =
     TODO()
 
