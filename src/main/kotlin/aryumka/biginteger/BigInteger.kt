@@ -240,14 +240,10 @@ class BigInteger(value: String) {
 
   // Unary
   operator fun unaryPlus(): BigInteger =
-    TODO()
+    this
 
   operator fun unaryMinus(): BigInteger =
-    TODO()
-
-  // Not
-  operator fun not(): BigInteger =
-    TODO()
+    BigInteger(if (this.sign == Sign.POSITIVE) "-${this.integer}" else this.integer)
 
   override fun equals(other: Any?): Boolean =
     when (other) {

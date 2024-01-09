@@ -248,4 +248,36 @@ class BigIntegerTests: FunSpec({
       bigInteger1 % bigInteger2 shouldBe bigInteger3
     }
   }
+
+  context("unaryMinus operator") {
+    test("BigInteger(6) == BigInteger(-6)") {
+      val bigInteger1 = BigInteger.of(6)
+      val bigInteger2 = BigInteger.of(-6)
+
+      -bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger(-6) == BigInteger(6)") {
+      val bigInteger1 = BigInteger.of(-6)
+      val bigInteger2 = BigInteger.of(6)
+
+      -bigInteger1 shouldBe bigInteger2
+    }
+  }
+
+  context("unaryPlus operator") {
+    test("BigInteger(6) == BigInteger(6)") {
+      val bigInteger1 = BigInteger.of(6)
+      val bigInteger2 = BigInteger.of(6)
+
+      +bigInteger1 shouldBe bigInteger2
+    }
+
+    test("BigInteger(-6) == BigInteger(-6)") {
+      val bigInteger1 = BigInteger.of(-6)
+      val bigInteger2 = BigInteger.of(-6)
+
+      +bigInteger1 shouldBe bigInteger2
+    }
+  }
 })
