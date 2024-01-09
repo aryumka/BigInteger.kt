@@ -231,7 +231,7 @@ class BigIntegerTests: FunSpec({
     }
   }
 
-  context("mod operator") {
+  context("rem operator") {
     test("BigInteger(6) % BigInteger(2) == BigInteger(0)") {
       val bigInteger1 = BigInteger.of(6)
       val bigInteger2 = BigInteger.of(2)
@@ -244,14 +244,6 @@ class BigIntegerTests: FunSpec({
       val bigInteger1 = BigInteger.of(6)
       val bigInteger2 = BigInteger.of(4L)
       val bigInteger3 = BigInteger.of(2)
-
-      bigInteger1 % bigInteger2 shouldBe bigInteger3
-    }
-
-    test("BigInteger(6L) % BigInteger(2L) == BigInteger(0)") {
-      val bigInteger1 = BigInteger.of(6L)
-      val bigInteger2 = BigInteger.of(2L)
-      val bigInteger3 = BigInteger.of(0)
 
       bigInteger1 % bigInteger2 shouldBe bigInteger3
     }

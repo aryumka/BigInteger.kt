@@ -211,12 +211,32 @@ class BigInteger(value: String) {
 
   // Rem
   operator fun rem(other: Int): BigInteger =
-    TODO()
+    this.rem(other.toString())
+
   operator fun rem(other: Long): BigInteger =
-    TODO()
+    this.rem(other.toString())
 
   operator fun rem(other: BigInteger): BigInteger =
-    TODO()
+    this.rem(other.toString())
+
+  private fun rem(other: String): BigInteger {
+    var sign = if (this.sign == BigInteger(other).sign) "" else "-"
+    var remainder = BigInteger(this.integer)
+    val divisor = BigInteger(other)
+
+    if (other == "0") {
+      throw ArithmeticException("Division by zero")
+    }
+
+    var count = 0
+    while (remainder >= divisor * of(count + 1)) {
+      count++
+    }
+
+    remainder -= divisor * of(count)
+
+    return BigInteger(sign + remainder.integer)
+  }
 
   // Unary
   operator fun unaryPlus(): BigInteger =
