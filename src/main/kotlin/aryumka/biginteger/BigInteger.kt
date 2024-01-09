@@ -8,14 +8,14 @@ class BigInteger(value: String) {
     if (value.isEmpty()) {
       throw IllegalArgumentException("value must not be empty")
     }
-    if (!value.matches(Regex("[-|+]?[0-9]+"))) {
+    if (!value.matches(Regex("^[+-]?[0-9_]+$"))) {
       throw IllegalArgumentException("value must be a number")
     }
     if (value.startsWith("-") || value.startsWith("+")) {
-      this.integer = value.substring(1)
+      this.integer = value.substring(1).replace("_", "")
       this.sign = if (value.startsWith("-")) Sign.NEGATIVE else Sign.POSITIVE
     } else {
-      this.integer = value
+      this.integer = value.replace("_", "")
       this.sign = Sign.POSITIVE
     }
   }
@@ -100,49 +100,28 @@ class BigInteger(value: String) {
       return BigInteger("0")
     }
 
-    if (this.integer.length > other.length) {
-      minuend = this.integer
-      subtrahend = other
-      sign = ""
-    } else if (this.integer.length < other.length) {
-      minuend = other
-      subtrahend = this.integer
-      sign = "-"
-    } else {
-      //same length
-      if (this.integer > other) {
-        minuend = this.integer
-        subtrahend = other
-        sign = ""
-      } else {
-        minuend = other
-        subtrahend = this.integer
-        sign = "-"
-      }
-    }
+    var minuLength = minuend.length - 1
+    var subLength = subtrahend.length - 1
+    while (minuLength >= 0 || subLength >= 0 || carry > 0) {
+      var minuDigit = if (minuLength >= 0) minuend[minuLength] - '0' else 0
+      val subDigit = if (subLength >= 0) subtrahend[minuLength] - '0' else 0
 
-    var thisLength = minuend.length - 1
-    var otherLength = subtrahend.length - 1
-    while (thisLength >= 0 || thisLength >= 0 || carry > 0) {
-      var thisDigit = if (thisLength >= 0) this.integer[thisLength] - '0' else 0
-      val otherDigit = if (otherLength >= 0) other[thisLength] - '0' else 0
-
-      if (thisDigit < otherDigit) {
-        thisDigit += 10
+      if (minuDigit < subDigit) {
+        minuDigit += 10
       }
 
-      val diff = thisDigit - otherDigit - carry
+      val diff = minuDigit - subDigit - carry
 
-      carry = if (thisDigit >= 10) {
+      carry = if (minuDigit >= 10) {
         1
       } else {
         0
       }
 
-      result += if (diff % 10 > 0) diff % 10 else ""
+      result += diff % 10
 
-      thisLength--
-      otherLength--
+      minuLength--
+      subLength--
     }
 
     return BigInteger(sign + result.reversed())
