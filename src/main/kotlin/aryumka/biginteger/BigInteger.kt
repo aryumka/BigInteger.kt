@@ -138,25 +138,37 @@ class BigInteger(value: String) {
     this.times(other.toString())
 
   private fun times(other: String): BigInteger {
-    var result = ""
+    var results = mutableListOf<String>()
     var carry = 0
     var valueLength = this.integer.length - 1
     var otherLength = other.length - 1
 
-    while (valueLength >= 0 || otherLength >= 0 || carry > 0) {
-      val valueDigit = if (valueLength >= 0) this.integer[valueLength] - '0' else 0
-      val otherDigit = if (otherLength >= 0) other[otherLength] - '0' else 0
+    var result = ""
 
-      val sum = valueDigit * otherDigit + carry
+    for (i in otherLength downTo 0) {
+      val otherDigit = other[i] - '0'
+      for (j in valueLength downTo 0) {
+        val valueDigit = this.integer[j] - '0'
 
-      result += (sum % 10)
-      carry = sum / 10
+        val sum = valueDigit * otherDigit + carry
 
-      valueLength--
-      otherLength--
+        result += (sum % 10)
+
+        carry = sum / 10
+      }
+      if (carry > 0) {
+        result += carry
+        carry = 0
+      }
+      results.add(result.reversed())
+      result = ""
     }
 
-    return BigInteger(result.reversed())
+    return results.mapIndexed { index, s ->
+      s.padEnd(s.length + index, '0')
+    }.map { BigInteger(it) }.reduce { acc, bigInteger ->
+      acc + bigInteger
+    }
   }
   // Div
   operator fun div(other: Int): BigInteger =
