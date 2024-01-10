@@ -211,6 +211,21 @@ class BigIntegerTests: FunSpec({
 
       bigInteger1 * bigInteger2 shouldBe bigInteger3
     }
+
+    test("BigInteger(10_000_000_000) * BigInteger(20_000_000_000) == BigInteger(200000000000000000000)") {
+      val bigInteger1 = BigInteger.of(10_000_000_000)
+      val bigInteger2 = BigInteger.of(20_000_000_000)
+      val bigInteger3 = BigInteger.of("200000000000000000000")
+
+      bigInteger1 * bigInteger2 shouldBe bigInteger3
+    }
+    test("BigInteger(123) * BigInteger(56) == BigInteger(200000000000000000000)") {
+      val bigInteger1 = BigInteger.of(123)
+      val bigInteger2 = BigInteger.of(56)
+      val bigInteger3 = BigInteger.of(6888)
+
+      bigInteger1 * bigInteger2 shouldBe bigInteger3
+    }
   }
 
   context("div operator") {
