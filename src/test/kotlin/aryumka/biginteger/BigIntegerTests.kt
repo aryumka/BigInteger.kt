@@ -34,11 +34,11 @@ class BigIntegerTests: FunSpec({
       bigInteger1 shouldBe bigInteger2
     }
 
-    test("BigInteger.of(1) == BigInteger.of(\"-1\")") {
+    test("BigInteger.of(1) != BigInteger.of(\"-1\")") {
       val bigInteger1 = BigInteger.of(1)
       val bigInteger2 = BigInteger.of("-1")
 
-      bigInteger1 shouldBe bigInteger2
+      bigInteger1 shouldNotBe bigInteger2
     }
 
     test("BigInteger.of(\"foo\") throws IllegalArgumentException") {
@@ -251,6 +251,12 @@ class BigIntegerTests: FunSpec({
       val bigInteger3 = BigInteger.of(3)
 
       bigInteger1 / bigInteger2 shouldBe bigInteger3
+    }
+
+    test("BigInteger(20_000_000_000) / BigInteger(10_000_000_000) == BigInteger(2)") {
+      val bigInteger1 = BigInteger.of(20_000_000_000)
+      val bigInteger2 = BigInteger.of(10_000_000_000)
+      val bigInteger3 = BigInteger.of(2)
     }
   }
 

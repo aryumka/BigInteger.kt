@@ -104,7 +104,7 @@ class BigInteger(value: String) {
     var subLength = subtrahend.length - 1
     while (minuLength >= 0 || subLength >= 0 || carry > 0) {
       var minuDigit = if (minuLength >= 0) minuend[minuLength] - '0' else 0
-      val subDigit = if (subLength >= 0) subtrahend[minuLength] - '0' else 0
+      val subDigit = if (subLength >= 0) subtrahend[subLength] - '0' else 0
 
       if (minuDigit < subDigit) {
         minuDigit += 10
@@ -124,7 +124,7 @@ class BigInteger(value: String) {
       subLength--
     }
 
-    return BigInteger(sign + result.reversed())
+    return BigInteger(sign + result.reversed().trimStart('0'))
   }
 
   // Times
