@@ -74,7 +74,7 @@ val a = BigInteger.of(-10_000_000_000)
 val b = -a // 10000000000
 ```
 
-**Note: This BigIntegerKotlin class is inspired by the BigInteger class in Java
+**Note: This is inspired by the BigInteger class in Java
 and is created for educational purposes. It may not cover all edge cases and
 optimizations present in production-ready libraries.
 
