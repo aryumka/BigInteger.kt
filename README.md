@@ -13,7 +13,7 @@ Taking that into account, as we all can expect, it's inevitably slower than any 
 It takes O(n) for both addition and subtraction, for multiplication O(n^2) and lastly for division, in worst case, O(n^3) of time complexity(standard grade-school approaches).
 
 ## Features
-- Arithmetic Operations: Addition, Subtraction, Multiplication, Division
+- Arithmetic Operations: Addition, Subtraction, Multiplication, Division, Modulo, Positive, Negative
 - Comparison Operations: Equals, Greater Than, Less Than
 - Conversion: From String, Long or Int, To String
 - Immutable: Instances of BigIntegerKotlin are immutable, ensuring thread safety
