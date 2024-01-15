@@ -24,14 +24,13 @@ It takes O(n) for both addition and subtraction, for multiplication O(n^2) and l
 val a = BigInteger.of("123456789012345678901234567890")
 a.toString() // 123456789012345678901234567890
 ```
-
 ```kotlin
 //comparison
 val a = BigInteger.of(10_000_000_000)
 val b = BigInteger.of(20_000_000_000)
 println(a < b) // true
 ```
-
+```kotlin
 //addition
 val a = BigInteger.of(10_000_000_000)
 val b = BigInteger.of(20_000_000_000)
