@@ -20,7 +20,7 @@ It takes O(n) for both addition and subtraction, for multiplication O(n^2) and l
   
 ## Usage
 ```kotlin
-//create
+//create & toString
 val a = BigInteger.of("123456789012345678901234567890")
 a.toString() // 123456789012345678901234567890
 ```
