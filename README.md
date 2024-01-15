@@ -10,7 +10,7 @@ BigInteger is like Integer but deals with very large numbers, mostly larger than
 Therefore it uses String when calculating so we don't have to worry about overflows. 
 
 And as we all can expect, it's inevitably slower than any other number type calculations.
-Taking that into an account, the BigInteger I've created takes O(n) for both addition and subtraction, for multiplication O(n^2) and lastly for division, in worst case, O(n^3) of time complexity. I took standard grade-school approaches(basically the one learn in elementary school).
+Taking that into an account, the BigInteger I've created takes O(n) for both addition and subtraction, for multiplication O(n^2) and lastly for division, in worst case, O(n^3) of time complexity, since I took standard grade-school approaches which I hopefully can replace with more efficient algorithm.
 
 ## Features
 - [x] Addition
