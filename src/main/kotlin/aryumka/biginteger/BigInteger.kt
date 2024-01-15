@@ -1,8 +1,8 @@
 package aryumka.biginteger
 
 class BigInteger(value: String) {
-  val integer: String
-  val sign: Sign
+  private val integer: String
+  private val sign: Sign
 
   init {
     if (value.isEmpty()) {
