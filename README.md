@@ -15,7 +15,7 @@ It takes O(n) for both addition and subtraction, for multiplication O(n^2) and l
 ## Features
 - Arithmetic Operations: Addition, Subtraction, Multiplication, Division
 - Comparison Operations: Equals, Greater Than, Less Than
-- Conversion: From String, To String
+- Conversion: From String, Long or Int, To String
 - Immutable: Instances of BigIntegerKotlin are immutable, ensuring thread safety
   
 ## Usage
