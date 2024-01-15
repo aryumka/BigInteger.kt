@@ -21,6 +21,7 @@ Taking that into account, the BigInteger I've created takes O(n) for both additi
 - [x] Positive
 - [x] Negative
 - [x] Compare
+- [x] Equals
 
 ## Usage
 ```kotlin
