@@ -4,7 +4,7 @@
 We are always told "Do not reinvent the wheel".
 
 Still I've created this, which is obviously the opposite of the saying.
-Because I believe sometimes the best way to learn is to build it from a scratch. 
+Because I believe sometimes the best way to learn is to build it from scratch. 
 
 BigInteger is designed to handle large integer values that may exceed the range of built-in data types in Kotlin.
 it basically uses String to deal with values so we don't have to worry about overflows. 
